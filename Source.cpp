@@ -1,4 +1,4 @@
- #include <iostream>
+#include <iostream>
 #include <vector>
 #include <iterator>
 using namespace std;
@@ -38,6 +38,7 @@ vector<int> sumVec(vector<int>& a, vector<int>& b)
 	}
 	return result;
 }
+
 vector<int> minusVec(vector<int>& a, vector<int>& b)
 {
 	vector<int> result;
@@ -67,6 +68,29 @@ vector<int> minusVec(vector<int>& a, vector<int>& b)
 			}
 			break;
 		}
+		if (a[i] < b[i])
+		{
+			for (int j = 1; j <= a.size(); j++)
+			{
+				if (j < a.size())
+				{
+					b[a.size() - j - 1]--;
+					num = base + b[a.size() - j];
+				}
+				else
+				{
+					num = b[a.size() - j];
+				}
+				num -= a[a.size() - j];
+				if (num / base > 0)
+				{
+					b[a.size() - j - 1]++;
+					num %= base;
+				}
+				result.insert(result.cbegin(), num);
+			}
+			break;
+		}
 
 	}
 	for (int j = 0; j < result.size(); j++)
@@ -79,23 +103,41 @@ vector<int> minusVec(vector<int>& a, vector<int>& b)
 	return result;
 }
 
+void addZero(vector<int>& a, vector<int>& b)
+{
 
+	if (a.size() > b.size())
+	{
+		for (int i = b.size(); i < a.size(); i++)
+		{
+			b.insert(b.cbegin(), 0);
+		}
+	}
+	else
+	{
+		for (int i = a.size(); i < b.size(); i++)
+		{
+			a.insert(a.cbegin(), 0);
+		}
+	}
 
+}
 
 int main()
 {
-	string str1 = "222";
-	string str2 = "115";
+	string str1 = "9";
+	string str2 = "12";
 	vector<int> vector1 = swapStrInt(str1);
 	vector<int> vector2 = swapStrInt(str2);
+	addZero(vector1, vector2);
 	vector<int> res = minusVec(vector1, vector2);
-
 
 	for (int i = 0; i < res.size(); i++) {
 		cout << res[i] << endl;
 	}
 
-
 	system("pause");
 	return 0;
 }
+
+
