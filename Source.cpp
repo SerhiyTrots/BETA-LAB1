@@ -68,7 +68,7 @@ vector<int> minusVec(vector<int>& a, vector<int>& b)
 			}
 			break;
 		}
-		if (a[i] < b[i])
+		if(a[i] < b[i])
 		{
 			for (int j = 1; j <= a.size(); j++)
 			{
@@ -91,9 +91,9 @@ vector<int> minusVec(vector<int>& a, vector<int>& b)
 			}
 			break;
 		}
-
+		 
 	}
-	for (int j = 0; j < result.size(); j++)
+	for (int j = 0; j < result.size(); j++) 
 	{
 		if (result[j] == 0)
 			result.erase(result.begin());
@@ -105,15 +105,18 @@ vector<int> minusVec(vector<int>& a, vector<int>& b)
 
 void addZero(vector<int>& a, vector<int>& b)
 {
-
-	if (a.size() > b.size())
+	if(a.size() % 2)
+		a.insert(a.cbegin(), 0);
+	if (b.size() % 2)
+		b.insert(b.cbegin(), 0);
+	if (a.size() > b.size() )
 	{
 		for (int i = b.size(); i < a.size(); i++)
 		{
 			b.insert(b.cbegin(), 0);
 		}
 	}
-	else
+	if (a.size() < b.size())
 	{
 		for (int i = a.size(); i < b.size(); i++)
 		{
@@ -123,14 +126,25 @@ void addZero(vector<int>& a, vector<int>& b)
 
 }
 
+vector<int> Karatsuba(vector<int>& a, vector<int>& b)
+{
+	vector<int> result;
+	addZero(a, b);
+	size_t 
+
+
+
+
+}
+
 int main()
 {
-	string str1 = "9";
-	string str2 = "12";
+	string str1 = "999";
+	string str2 = "11";
 	vector<int> vector1 = swapStrInt(str1);
 	vector<int> vector2 = swapStrInt(str2);
 	addZero(vector1, vector2);
-	vector<int> res = minusVec(vector1, vector2);
+	vector<int> res = sumVec(vector1, vector2);
 
 	for (int i = 0; i < res.size(); i++) {
 		cout << res[i] << endl;
@@ -139,5 +153,6 @@ int main()
 	system("pause");
 	return 0;
 }
+
 
 
